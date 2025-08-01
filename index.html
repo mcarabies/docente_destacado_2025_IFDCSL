@@ -11,10 +11,10 @@
 <body>
 
     <main class="presentation-container">
-        <section class="slide active">
+        <section class="slide" data-view="all">
             <div class="slide-content">
                 <h1 class="slide-title">Reconocimiento a la Labor Docente</h1>
-                <p class="slide-subtitle">Una iniciativa del cuerpo directivo para celebrar la excelencia y vocación en el IFDCSL, basada en la voz de sus estudiantes.</p>
+                <p class="slide-subtitle">Una iniciativa del cuerpo directivo para celebrar la excelencia y vocación en el IFDCSL.</p>
                 <div class="winner-card">
                     <div class="winner-header">Docente Destacada del Año</div>
                     <div class="winner-name">María Elena Bronzi</div>
@@ -23,7 +23,7 @@
             </div>
         </section>
 
-        <section class="slide">
+        <section class="slide" data-view="desktop">
             <div class="slide-content slide-2-layout">
                 <div class="top-container">
                     <h2 class="slide-title">Top 5 Docentes Más Votados</h2>
@@ -31,30 +31,64 @@
                         </ol>
                 </div>
                 <div class="search-container">
-                    <h2 class="slide-title">Consulta Individual de Votos</h2>
-                    <p class="slide-subtitle">Selecciona un docente para ver su total.</p>
+                    <h2 class="slide-title">Consulta Individual</h2>
+                    <p class="slide-subtitle">Selecciona un docente.</p>
                     <div class="search-wrapper">
-                        <select id="teacher-selector" class="teacher-selector">
-                            <option value="" disabled selected>Selecciona un docente...</option>
-                            </select>
-                        <div id="search-result"></div>
+                        <select id="teacher-selector-desktop" class="teacher-selector">
+                            <option value="" disabled selected>Buscar docente...</option>
+                        </select>
+                        <div id="search-result-desktop" class="search-result"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="slide">
+        <section class="slide" data-view="mobile">
+            <h2 class="slide-title">Top 5 Docentes Más Votados</h2>
+            <ol class="top-list">
+                </ol>
+        </section>
+
+        <section class="slide" data-view="mobile">
+            <h2 class="slide-title">Consulta Individual de Votos</h2>
+            <p class="slide-subtitle">Selecciona un docente para ver su total.</p>
+            <div class="search-wrapper">
+                <select id="teacher-selector-mobile" class="teacher-selector">
+                    <option value="" disabled selected>Buscar docente...</option>
+                </select>
+                <div id="search-result-mobile" class="search-result"></div>
+            </div>
+        </section>
+
+        <section class="slide" data-view="desktop">
             <div class="slide-content chart-slide">
                 <h1 class="slide-title">Las Cualidades que Definen a un Gran Docente</h1>
                 <div class="chart-layout">
                     <div class="chart-container">
-                        <canvas id="categoryChart"></canvas>
+                        <canvas id="categoryChartDesktop"></canvas>
                     </div>
                     <div class="chart-insight">
                         <h3 class="insight-title">Análisis Destacado</h3>
                         <div class="insight-icon">💡</div>
-                        <p>La <strong>"Competencia Profesional y Pedagógica"</strong> es, con diferencia, la cualidad más valorada, subrayando la importancia que los estudiantes le dan al dominio del saber y la claridad para transmitirlo.</p>
+                        <p>La <strong>"Competencia Profesional"</strong> es, con diferencia, la cualidad más valorada por los estudiantes.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" data-view="mobile">
+            <h1 class="slide-title">Cualidades Más Valoradas</h1>
+            <div class="chart-container">
+                <canvas id="categoryChartMobile"></canvas>
+            </div>
+        </section>
+
+        <section class="slide" data-view="mobile">
+            <div class="slide-content">
+                <h1 class="slide-title">Análisis Destacado</h1>
+                <div class="chart-insight">
+                    <div class="insight-icon">💡</div>
+                    <p>La <strong>"Competencia Profesional y Pedagógica"</strong> es, con diferencia, la cualidad más valorada, subrayando la importancia que los estudiantes le dan al dominio del saber y la claridad para transmitirlo.</p>
                 </div>
             </div>
         </section>
@@ -64,9 +98,7 @@
 
     <nav class="navigation">
         <button id="prevBtn" class="nav-button" title="Anterior">&#10094;</button>
-        <div id="nav-text" class="nav-text-container">
-            <span></span>
-        </div>
+        <div id="nav-text" class="nav-text-container"></div>
         <button id="nextBtn" class="nav-button" title="Siguiente">&#10095;</button>
     </nav>
 
