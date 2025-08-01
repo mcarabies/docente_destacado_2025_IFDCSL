@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconocimiento Docente IFDCSL</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <main class="presentation-container">
+        <section class="slide active">
+            <div class="slide-content">
+                <h1 class="slide-title">Reconocimiento a la Labor Docente</h1>
+                <p class="slide-subtitle">Una iniciativa del cuerpo directivo para celebrar la excelencia y vocación en el IFDCSL, basada en la voz de sus estudiantes.</p>
+                <div class="winner-card">
+                    <div class="winner-header">Docente Destacada del Año</div>
+                    <div class="winner-name">María Elena Bronzi</div>
+                    <div class="winner-votes">Con 55 votos de un total de 492 respuestas</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="slide-content slide-2-layout">
+                <div class="top-container">
+                    <h2 class="slide-title">Top 5 Docentes Más Votados</h2>
+                    <ol class="top-list">
+                        </ol>
+                </div>
+                <div class="search-container">
+                    <h2 class="slide-title">Consulta Individual de Votos</h2>
+                    <p class="slide-subtitle">Selecciona un docente para ver su total.</p>
+                    <div class="search-wrapper">
+                        <select id="teacher-selector" class="teacher-selector">
+                            <option value="" disabled selected>Selecciona un docente...</option>
+                            </select>
+                        <div id="search-result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="slide-content chart-slide">
+                <h1 class="slide-title">Las Cualidades que Definen a un Gran Docente</h1>
+                <div class="chart-layout">
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    <div class="chart-insight">
+                        <h3 class="insight-title">Análisis Destacado</h3>
+                        <div class="insight-icon">💡</div>
+                        <p>La <strong>"Competencia Profesional y Pedagógica"</strong> es, con diferencia, la cualidad más valorada, subrayando la importancia que los estudiantes le dan al dominio del saber y la claridad para transmitirlo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="teacher-tooltip" class="tooltip"></div>
+
+    <nav class="navigation">
+        <button id="prevBtn" class="nav-button" title="Anterior">&#10094;</button>
+        <div id="nav-text" class="nav-text-container">
+            <span></span>
+        </div>
+        <button id="nextBtn" class="nav-button" title="Siguiente">&#10095;</button>
+    </nav>
+
+</body>
+</html>

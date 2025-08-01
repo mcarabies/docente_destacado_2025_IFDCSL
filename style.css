@@ -1,0 +1,191 @@
+/* --- FUENTE E IMPORTACIONES --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* --- VARIABLES GLOBALES DE DISEÑO --- */
+:root {
+    --primary-color: #0d47a1;
+    --secondary-color: #1976d2;
+    --accent-color: #42a5f5;
+    --text-color: #333;
+    --light-text-color: #f8f9fa;
+    --bg-color: #f4f6f8;
+    --card-bg: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --border-radius: 16px;
+    --transition-speed: 0.5s;
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+    --bronze: #cd7f32;
+}
+
+/* --- ESTILOS GENERALES Y DEL CUERPO --- */
+* { box-sizing: border-box; }
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.presentation-container {
+    width: 90%;
+    max-width: 1100px;
+    height: 85vh;
+    max-height: 750px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- ESTILO DE CADA SLIDE --- */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px 60px 90px 60px; /* Padding inferior para no chocar con nav */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+.slide-content { width: 100%; text-align: center; }
+.slide-title { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: var(--primary-color); margin-bottom: 1rem; }
+.slide-subtitle { font-size: clamp(1rem, 2vw, 1.1rem); font-weight: 300; max-width: 800px; margin: 0 auto 2rem; color: #555; }
+
+/* --- SLIDE 1: GANADOR --- */
+.winner-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-text-color);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    margin: 2rem auto 0;
+    max-width: 600px;
+}
+.winner-header { font-size: 1.2rem; }
+.winner-name { font-size: 2.5rem; font-weight: 700; margin: 0.5rem 0; }
+.winner-votes { font-size: 1.1rem; }
+
+/* --- SLIDE 2: TOP 5 Y BUSCADOR --- */
+.slide-2-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.top-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+.top-list li {
+    position: relative; /* Necesario para el tooltip */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    border-left: 5px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.top-list li:hover { transform: scale(1.03); box-shadow: 0 5px 15px rgba(0,0,0,0.07); }
+li.rank-1 { border-left-color: var(--gold); }
+li.rank-2 { border-left-color: var(--silver); }
+li.rank-3 { border-left-color: var(--bronze); }
+.teacher-name::before { margin-right: 10px; font-size: 1.2rem; }
+li.rank-1 .teacher-name::before { content: '🥇'; }
+li.rank-2 .teacher-name::before { content: '🥈'; }
+li.rank-3 .teacher-name::before { content: '🥉'; }
+.vote-count { font-weight: 500; background-color: var(--accent-color); color: var(--light-text-color); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.9rem; }
+.search-wrapper { margin-top: 1rem; }
+.teacher-selector { width: 100%; max-width: 400px; padding: 0.8rem 1.2rem; font-size: 1rem; font-family: 'Poppins', sans-serif; border-radius: 10px; border: 2px solid #ddd; background-color: #fff; cursor: pointer; }
+.teacher-selector:focus { outline: none; border-color: var(--secondary-color); }
+#search-result { margin-top: 1.5rem; font-size: 1.3rem; font-weight: 600; min-height: 30px; color: var(--secondary-color); }
+
+/* --- SLIDE 3: GRÁFICO --- */
+.chart-slide { background-image: radial-gradient(circle, #f4f6f8 1px, transparent 1px); background-size: 20px 20px; }
+.chart-layout { display: grid; grid-template-columns: 2fr 1fr; align-items: center; gap: 2rem; width: 100%; }
+.chart-container { position: relative; height: 450px; }
+.chart-insight { background: #fff; padding: 1.5rem; border-radius: var(--border-radius); border: 1px solid #e9ecef; text-align: center; }
+.insight-title { font-weight: 600; color: var(--primary-color); margin-top: 0; }
+.insight-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.chart-insight p { font-size: 0.95rem; line-height: 1.6; }
+
+/* --- VENTANA EMERGENTE (TOOLTIP) PARA CARACTERÍSTICAS --- */
+.tooltip {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 350px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    z-index: 1000;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    transform: scale(0.95);
+}
+.tooltip.visible {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+}
+.tooltip ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px; /* Altura máxima antes de hacer scroll */
+    overflow-y: auto;
+}
+.tooltip li {
+    padding: 5px 0;
+    border-bottom: 1px solid #555;
+}
+.tooltip li:last-child {
+    border-bottom: none;
+}
+
+/* --- NAVEGACIÓN --- */
+.navigation {
+    position: fixed; /* Posición fija en la ventana */
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.nav-button {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.nav-button:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+}
+.nav-button:disabled { background-color: #ccc; cursor: not-allowed; }
+.nav-text-container { font-size: 0.9rem; color: #777; width: 180px; text-align: center; }
